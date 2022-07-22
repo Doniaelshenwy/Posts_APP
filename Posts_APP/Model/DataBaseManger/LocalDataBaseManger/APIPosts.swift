@@ -9,6 +9,7 @@ import Foundation
 
 class APIPosts{
     var postArray : [Posts] = []
+    var postAlamofireArray : [Posts] = []
     
     func fetchData(Compilation : @escaping([Posts]?,String?)-> (Void)) {
         

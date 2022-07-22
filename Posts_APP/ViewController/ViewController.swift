@@ -28,33 +28,63 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         self.activityIndicator.startAnimating()
-        APIPosts().fetchData { postArray, error in
-            DispatchQueue.main.async{
-                self.activityIndicator.stopAnimating()
-            }
-          
-            if let unwarppedArray = postArray{
-                self.arrayPost = unwarppedArray
-                
-                print(self.arrayPost.count)
-                
-                DispatchQueue.main.async {
-                    self.userIdLabel.text = String(self.arrayPost[0].id)
-                    self.titleLabel.text = self.arrayPost[0].title
-                    self.bodyLabel.text = self.arrayPost[0].body
-                }
-            }
+        
+        APIPosts().fetchDataAlamofire { postArray, error in
             
-            if let unwarppedError = error{
-                print(unwarppedError)
-            }
+            DispatchQueue.main.async{
+                          self.activityIndicator.stopAnimating()
+                       }
+           
+                       if let unwarppedArray = postArray{
+                           self.arrayPost = unwarppedArray
+        
+                           
+           
+                           DispatchQueue.main.async {
+                               self.userIdLabel.text = String(self.arrayPost[0].id)
+                               self.titleLabel.text = self.arrayPost[0].title
+                               self.bodyLabel.text = self.arrayPost[0].body
+                           }
+                       }
+           
+                       if let unwarppedError = error{
+                           print(unwarppedError)
+                       }
         }
+        
+        
+        
+//        self.activityIndicator.startAnimating()
+//        APIPosts().fetchData { postArray, error in
+//            DispatchQueue.main.async{
+//                self.activityIndicator.stopAnimating()
+//            }
+//
+//            if let unwarppedArray = postArray{
+//                self.arrayPost = unwarppedArray
+//
+//                print(self.arrayPost.count)
+//
+//                DispatchQueue.main.async {
+//                    self.userIdLabel.text = String(self.arrayPost[0].id)
+//                    self.titleLabel.text = self.arrayPost[0].title
+//                    self.bodyLabel.text = self.arrayPost[0].body
+//                }
+//            }
+//
+//            if let unwarppedError = error{
+//                print(unwarppedError)
+//            }
+//        }
       
     }
 
-//
-//    @IBAction func fetchDataBtn(_ sender: UIButton) {
-//
+
+  //  @IBAction func fetchDataBtn(_ sender: UIButton) {
+        
+        
+      
+
 //        APIPosts().fetchData { postArray, error in
 //
 //            if let unwarppedPostArray = postArray{
@@ -76,7 +106,7 @@ class ViewController: UIViewController {
 //            }
 //        }
 //    }
-//
+
     
     @IBAction func nextBtn(_ sender: UIButton) {
         
